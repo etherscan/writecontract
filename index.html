@@ -132,7 +132,8 @@
     var body = $('#accordion');
     var net = getUrlParameter('n');
     var address;
-    var ABI = '';
+    var counter = 0;
+    var ABI = [];
     var web3;
     var contractAddress = getUrlParameter('a');
     var myContract;
@@ -160,23 +161,24 @@
         appendABI(contractAddress, body, 5);
     }
 
-    function appendABI(contractAddress, body, maxDepth) {
-        $.getJSON('//' + api + '.etherscan.io/api?module=contract&action=getabi&address=' + contractAddress, function (data) {
+    function appendABI(implementationContractAddress, body, maxDepth) {
+        $.getJSON('//' + api + '.etherscan.io/api?module=contract&action=getabi&address=' + implementationContractAddress, function (data) {
             if (data.status == '0') {
-                header.append("<br><i Class='fa fa-frown-o'></i>  Sorry, we were unable to locate a matching Contract ABI or SourceCode for this contract.<br><br>If you are the contract owner, please <a href='https://etherscan.io/verifyContract2?a=" + contractAddress + "' target='_parent'>Verify Your Contract Source Code</a> here.");
+                header.append("<br><i Class='fa fa-frown-o'></i>  Sorry, we were unable to locate a matching Contract ABI or SourceCode for this contract.<br><br>If you are the contract owner, please <a href='https://etherscan.io/verifyContract2?a=" + implementationContractAddress + "' target='_parent'>Verify Your Contract Source Code</a> here.");
 
             } else {
 
-                var result = ABI = JSON.parse(data.result);
-                var counter = 0;
-                var maxCounter = 0;
+                var result = JSON.parse(data.result);
+                ABI = ABI.concat(result);
+                myContract = web3.eth.contract(ABI);
+                myContractInstance = myContract.at(contractAddress);
 
                 $.each(result, function (index, value) {
                     if (value.constant !== false) {
                         if (value.name !== undefined) {
                             if (maxDepth > 0 && value.name.toString() === "implementation" && value.inputs.length === 0) {
                                 web3.eth.call({
-                                    to: contractAddress,
+                                    to: implementationContractAddress,
                                     data: "0x5c60da1b"
                                 }, (error, implementationAddress) => {
                                     if (error) {
@@ -501,9 +503,6 @@
                         $('.write-btn').show();
                         $('#connectMetamask').hide();
                         web3.eth.defaultAccount = accounts[0];
-
-                        myContract = web3.eth.contract(ABI);
-                        myContractInstance = myContract.at(contractAddress);
 
                         $('#connector').removeClass("badge-red").addClass("badge-green");
                         $('#connector').attr('title', 'Connected');

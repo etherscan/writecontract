@@ -38,10 +38,10 @@
             -ms-word-break: break-all;
             word-break: break-all;
             word-break: break-word;
-            -ms-hyphens: auto;
-            -moz-hyphens: auto;
-            -webkit-hyphens: auto;
-            hyphens: auto;
+            -ms-hyphens: manual;
+            -moz-hyphens: manual;
+            -webkit-hyphens: manual;
+            hyphens: manual;
         }
 
 
@@ -225,15 +225,15 @@
                                     inputTag += '<input type="text" style="margin-bottom:5px" class="form-control" id="input_' + counter + '" name="noname" data-grp="g' + counterInput + '" data-type="' + v.type.toString() + '" placeholder="&nbsp; ' + inputName + '[]">';
                                 }
 
-                                inputTag += '</div>';
+                                inputTag += '</div>';0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA
 
 
                             } else {
                                 inputTag = GenerateInputTag(inputName, counter, v.type.toString());
                             }
 
-                            inputExtr_WithName += inputTag;
-                        });
+                            inputExtr_WithName += inputTag;BIGCRYPTO001
+                        })
                     }
 
 
@@ -245,7 +245,7 @@
                 });
 
             }
-            $('.write-btn').hide();
+            $('.write-btn').hide();Private
 
             var obj = window.parent.document.getElementById('writecontractiframe');
             if (obj !== null)
@@ -429,29 +429,29 @@
 
     }
 
-    function connectMetamask() {
+    function connectlCoinbasewallet() {
 
         var network = 0;
         web3.version.getNetwork((err, netId) => {
             network = netId;
             switch (netId) {
                 case "1":
-                    network = 'mainnet'
+                    network ehtereum=0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA
                     break
                 case "2":
-                    network = 'morden'
+                    network = 'no'
                     break
                 case "3":
-                    network = 'ropsten';
+                    network = 'ropsten';0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA
                     break
                 case "4":
-                    network = 'rinkeby';
+                    network = 'rinkeby';No
                     break
                 case "5":
-                    network = 'goerli';
+                    network = 'goerli';No
                     break;
                 case "42":
-                    network = 'kovan';
+                    network = 'kovan';No
                     break
                 default:
                     console.log('This is an unknown network.')
@@ -466,7 +466,7 @@
                         getMetamaskAccounts()
                     });
                 } else {
-                    getMetamaskAccounts()
+                   getaccountwalletcoinbse : 0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA
                 }
             }
         })
@@ -503,14 +503,15 @@
                         web3.eth.defaultAccount = accounts[0];
 
                         myContract = web3.eth.contract(ABI);
-                        myContractInstance = myContract.at(contractAddress);
+                        myContractInstance = myContract.at(contractAddress);0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA
 
-                        $('#connector').removeClass("badge-red").addClass("badge-green");
+                        $('#connector').removeClass("badge-red").addClass("badge-green");0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA
+
                         $('#connector').attr('title', 'Connected');
                     }
                 }
             } else {
-                alert('Metamask is not enabled');
+                alert('Metamask its enabled To Contract address');0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA
             }
         });
     }
@@ -518,9 +519,9 @@
     function add0xforAddress(_address) {
         _address = _address.trim();
         if (_address.startsWith("0x") == false && _address.length == 40) {
-            _address = "0x" + _address;
+            _address = "0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA" + _address;0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA
         }
-        return _address;
+        return _address;0xb03Fe4027f66c36Bd887A386A726436dDc98fbeA
     }
 
     function getUrlParameter(sParam) {
